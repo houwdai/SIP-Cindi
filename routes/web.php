@@ -18,5 +18,6 @@ use App\Http\Controllers\UsersController;
 |
 */
 
+Route::resource('/', UsersController::class);
 Route::get('/', "App\Http\Controllers\UsersController@index")->name("index");
-Route::resource('/users', "App\Http\Controllers\UsersController")->except(['create', 'show', 'edit', 'update', 'destroy']);
+Route::resource('/users', "App\Http\Controllers\UsersController")->except(['create', 'show',  'destroy']);

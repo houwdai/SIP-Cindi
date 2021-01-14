@@ -37,15 +37,16 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
-        $user = new User();
-        $user->name = $request->name;
-        $user->username = $request->username;
-        $user->email = $request->email;
-        $user->password = $request->password;
-        $user->role_id = $request->role_id;
-        $user->save();
+        // $user = new User();
+        // $user->name = $request->name;
+        // $user->username = $request->username;
+        // $user->email = $request->email;
+        // $user->password = $request->password;
+        // $user->role_id = $request->role_id;
+        // $user->save();
+        User::create($request->all());
 
-        return redirect()->route('index');
+        return redirect()->route('/');
     }
 
     /**
@@ -67,7 +68,7 @@ class UsersController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('edit');
     }
 
     /**
@@ -79,7 +80,8 @@ class UsersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        // $user->User::update($request->all());
+        return redirect()->route('/');
     }
 
     /**
@@ -88,12 +90,9 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(User $user)
     {
-        // $user->delete();
-
-        // return redirect()->route('posts.index')
-        //                 ->with('success','Post deleted successfully');
-
+        $user->delete();
+        return redirect()->route('/');
     }
 }

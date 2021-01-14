@@ -41,8 +41,14 @@
             <td><?= $u['email'] ?></td>
             <td><?= $u['password'] ?></td>
             <td class="tombol">
-              <button type="button" class="btn btn-danger btn-sm">delete</button>
-              <button type="button" class="btn btn-warning btn-sm">edit</button>
+              <form action="" method="POST">
+                @method('DELETE')
+                <button type="submit" title="delete" style="border: none; background-color:transparent;">
+                  <i class="fas fa-trash fa-lg text-danger"></i>
+                </button>
+                <button type="button" class="btn btn-danger btn-sm">delete</button>
+              </form>
+              <a class="btn btn-primary btn-sm" href="{{ route('users.edit',$u->id) }}">Edit</a>
             </td>
           </tr>
         <?php endforeach; ?>
@@ -63,6 +69,11 @@
               <div class="form-group">
                 <label for="name">Nama</label>
                 <input type="nama" class="form-control" id="name" name="name" aria-describedby="emailHelp" placeholder="Nama Lengkap">
+              </div>
+              <div class="form-group">
+                <label for="role_id">Role ID</label>
+                <input type="role_id" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="User ID">
+                <small id="role_id" name="role_id" class="form-text text-muted">1= Admin 2= User</small>
               </div>
               <div class="form-group">
                 <label for="username">Username</label>
