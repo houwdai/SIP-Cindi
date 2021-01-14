@@ -1,6 +1,11 @@
 <?php
 
+use App\Http\Controllers\userController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UsersController;
+
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +18,5 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', "App\Http\Controllers\UsersController@index")->name("index");
+Route::resource('/users', "App\Http\Controllers\UsersController")->except(['create', 'show', 'edit', 'update', 'destroy']);
