@@ -12,6 +12,11 @@ class UsersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    protected $user;
+    public function __construct (User $users)
+    {
+        $this->user = $users;
+    }
     public function index()
     {
 
@@ -68,7 +73,8 @@ class UsersController extends Controller
      */
     public function edit($id)
     {
-        return view('edit');
+        $user = User::findOrFail($id);
+        return view('edit') ->with(['user' => $user]);
     }
 
     /**
@@ -78,9 +84,9 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Users $user)
     {
-        // $user->User::update($request->all());
+        $user->User::update($request->all());
         return redirect()->route('/');
     }
 
